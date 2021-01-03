@@ -17,13 +17,15 @@ public class SnakeAndLadder {
 		}
 	
 	public static void checkForOption() {
-		int playerPosition = startPosition;			
+		int playerPosition = startPosition;	
+		int dieRolls = 0;
 		while (playerPosition != winningPosition) {
 			Random random = new Random();
 			int option = random.nextInt(3);
-			int diceValue = playerRollsTheDie();
-				System.out.println("player Position is "+ playerPosition);
+			int diceValue = playerRollsTheDie();				
 				System.out.println("Number on dice is: " + diceValue);
+				System.out.println("player Position is "+ playerPosition);
+				dieRolls += 1;
 				
 					switch (option) {
 						case noPlay:
@@ -56,7 +58,8 @@ public class SnakeAndLadder {
 						default:
 							System.out.println("Invalid Option");
 					}
-			}						
+			}	
+		System.out.println("Die Rolled " + dieRolls + " times." );
 	}
 	
 	
