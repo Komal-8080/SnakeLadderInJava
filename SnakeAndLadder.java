@@ -9,6 +9,7 @@ public class SnakeAndLadder {
 	public static final int noPlay = 0;
 	public static final int ladder = 1;
 	public static final int snake = 2;
+	public static final int winningPosition = 100;
 	
 	public static int playerRollsTheDie() {
 		Random random = new Random();
@@ -16,31 +17,41 @@ public class SnakeAndLadder {
 		}
 	
 	public static void checkForOption() {
-		int playerPosition = startPosition;
-		Random random = new Random();
-		int option = random.nextInt(3);
-		int diceValue = playerRollsTheDie();
-		switch (option) {
-			case noPlay:
-				playerPosition = playerPosition;
-				System.out.println("its a foul so no changes in your position");
-			break;
-			case ladder:
-				playerPosition = playerPosition + diceValue;
-				System.out.println("Congrats!! you got a ladder");
-			break;
-			case snake:
-				playerPosition = playerPosition - diceValue;
-				System.out.println("Oops!! Snake bite go down");
-			break;
-			default:
-				System.out.println("Invalid Option");
-		}		
+		int playerPosition = startPosition;			
+		while (playerPosition <= winningPosition) {
+			Random random = new Random();
+			int option = random.nextInt(3);
+			int diceValue = playerRollsTheDie();
+				System.out.println("player Position is "+ playerPosition);
+				System.out.println("Number on dice is: " + diceValue);
+				
+					switch (option) {
+						case noPlay:
+							System.out.println("its a foul so no changes in your position");
+							playerPosition = playerPosition;							
+							break;
+						case ladder:
+							System.out.println("Congrats!! you got a ladder");
+							playerPosition = playerPosition + diceValue;							
+							break;
+						case snake:
+							System.out.println("Oops!! Snake bite go down");							
+								if (playerPosition > diceValue ) {
+									playerPosition = playerPosition - diceValue;	
+								}
+								else {
+									playerPosition = 0;
+								}						
+							break;
+						default:
+							System.out.println("Invalid Option");
+					}
+			}						
 	}
+	
 	
 	public static void main(String[] args) {		
 		System.out.println("****Let's play Snake and Ladder Game*****");
-		System.out.println("Number on dice is: " + playerRollsTheDie());
 		checkForOption();
 	}
 	
